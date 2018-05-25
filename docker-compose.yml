@@ -1,0 +1,20 @@
+version: '3'
+services:
+  backend:
+    build: backend
+    ports:
+    - "4000:4000"
+    volumes:
+    - ./backend:/backend
+    environment:
+      DATABASE_URL: postgres://hermandapp:hermandapp@database:5432/hermandapp
+    command: hermandapp-server
+    tty: true
+    stdin_open: true
+  frontend:
+    build: frontend
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./frontend/src:/frontend/src
+    command: yarn start
