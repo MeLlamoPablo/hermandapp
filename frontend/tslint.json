@@ -9,5 +9,13 @@
 			"config/**/*.js",
 			"node_modules/**/*.ts"
 		]
+	},
+	"rules": {
+		"interface-name": [
+			true,
+			"never-prefix"
+		],
+		"array-type": [true, "generic"],
+		"jsx-no-lambda": false
 	}
 }
