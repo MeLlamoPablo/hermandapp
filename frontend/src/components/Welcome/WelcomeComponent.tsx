@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 export const WelcomeComponent = () => <section className="section">
 	<h3 className="title is-3">Bienvenido a Hermandapp</h3>

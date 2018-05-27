@@ -1,1 +1,3 @@
-export { RegisterBrotherhoodContainer as RegisterBrotherhood } from "./RegisterBrotherhoodContainer"
+export {
+	RegisterBrotherhoodContainer as RegisterBrotherhood
+} from "./RegisterBrotherhoodContainer"

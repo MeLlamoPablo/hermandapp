@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 interface Props {
 	onReturn: () => void
@@ -9,7 +9,7 @@ export const BrotherhoodRegistered = (
 		onReturn
 	}: Props
 ) => <div className="section">
-	<h2 className="subtitle">Registrar hermandad</h2>
+	<h3 className="title is-3">Registrar hermandad</h3>
 
 	<p>¡Se ha registrado la hermandad correctamente!</p>
 

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 // The first item represents whether or not the condition has been met
 // The second item represents the error message to show if the condition
@@ -9,6 +9,7 @@ type ValidationRules = (value: string) => Array<ValidationResult>
 interface Props {
 	name: string
 	value: string
+	type?: string
 	validationRules?: ValidationRules
 	onValueChange: (value: string) => void
 	onValidityChange: (isValid: boolean) => void
@@ -44,7 +45,13 @@ export class ValidableInput extends React.Component<Props, State> {
 	}
 
 	public render() {
-		const { name, value, onValueChange, onValidityChange } = this.props
+		const {
+			name,
+			type,
+			value,
+			onValueChange,
+			onValidityChange
+		} = this.props
 		const { blurred } = this.state
 		const errors = this.getErrors()
 		const isValid = errors.length === 0
@@ -66,7 +73,7 @@ export class ValidableInput extends React.Component<Props, State> {
 			<div className="control">
 				<input
 					className={`input${alertUser ? " is-danger" : " "}`}
-					type="text"
+					type={type || "text"}
 					placeholder={name}
 					value={value}
 					onChange={e => onValueChange(e.target.value)}
@@ -74,11 +81,11 @@ export class ValidableInput extends React.Component<Props, State> {
 				/>
 			</div>
 			{alertUser &&
-				<ul className="validation-errors-list">
-					{errors.map((error, i) =>
-						<li key={i}>{error}</li>
-					)}
-				</ul>
+			<ul className="validation-errors-list">
+				{errors.map((error, i) =>
+					<li key={i}>{error}</li>
+				)}
+			</ul>
 			}
 		</div>
 	}

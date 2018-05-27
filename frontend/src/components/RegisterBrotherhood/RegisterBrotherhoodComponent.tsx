@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 import { ValidableInput } from "../ValidableInput"
 import { Shared } from "./RegisterBrotherhoodContainer"
 

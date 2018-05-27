@@ -1,29 +1,22 @@
-import * as React from 'react';
-import './App.css';
+import * as React from "react";
+import {
+	BrowserRouter as Router
+} from "react-router-dom"
+import "./App.css";
 import { Header } from "./components/Header"
-import { RegisterBrotherhood } from "./components/RegisterBrotherhood"
-import { Welcome } from "./components/Welcome"
+import { Routes } from "./routes"
 
-class App extends React.Component {
+export class App extends React.Component {
     public render() {
         return (
             <div className="App">
-	            <Header />
-	            <section className="section">
-		            <div className="container">
-			            <div className="columns">
-				            <div className="column">
-								<Welcome />
-				            </div>
-				            <div className="column">
-					            <RegisterBrotherhood />
-				            </div>
-			            </div>
+	            <Router>
+		            <div>
+			            <Header />
+			            <Routes />
 		            </div>
-	            </section>
+	            </Router>
             </div>
         );
     }
 }
-
-export default App;

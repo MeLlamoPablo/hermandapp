@@ -1,5 +1,5 @@
-import * as NProgress from 'nprogress'
-import * as React from 'react'
+import * as NProgress from "nprogress"
+import * as React from "react"
 import { createBrotherhood } from "../../util/apiClient"
 import { BrotherhoodRegistered } from "./BrotherhoodRegistered"
 import { RegisterBrotherhoodComponent } from "./RegisterBrotherhoodComponent"

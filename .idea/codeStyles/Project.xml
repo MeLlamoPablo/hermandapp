@@ -56,6 +56,7 @@
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="REFORMAT_C_STYLE_COMMENTS" value="true" />
       <option name="USE_PUBLIC_MODIFIER" value="true" />
+      <option name="FORCE_QUOTE_STYlE" value="true" />
       <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
       <option name="VAR_DECLARATION_WRAP" value="5" />
       <option name="SPACES_WITHIN_OBJECT_LITERAL_BRACES" value="true" />
@@ -120,6 +121,7 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
+      <option name="RIGHT_MARGIN" value="80" />
       <option name="CALL_PARAMETERS_WRAP" value="5" />
       <option name="EXTENDS_LIST_WRAP" value="5" />
       <option name="EXTENDS_KEYWORD_WRAP" value="1" />
