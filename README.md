@@ -15,7 +15,7 @@ Para ejecutar la aplicación en un entorno local, tendremos que instalar
 lanzar el entorno con:
 
 ```bash
-$ git clone "$REPO"
+$ git clone https://github.com/MeLlamoPablo/hermandapp.git
 $ cd hermandapp
 $ docker-compose up
 ```
