@@ -32,7 +32,7 @@ const DEFAULT_STATE: State = {
 		createdAt: false,
 		email: false,
 		name: false,
-	},
+	}
 }
 
 export class RegisterBrotherhoodContainer extends React.Component<{}, State> {

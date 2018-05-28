@@ -4,7 +4,7 @@ import * as React from "react"
 // The second item represents the error message to show if the condition
 // is not met
 export type ValidationResult = [boolean, string]
-type ValidationRules = (value: string) => Array<ValidationResult>
+export type ValidationRules = (value: string) => Array<ValidationResult>
 
 interface Props {
 	name: string
@@ -81,7 +81,6 @@ export class ValidableInput extends React.Component<Props, State> {
 					onChange={e => onValueChange(e.target.value)}
 					onBlur={() => this.setState({ blurred: true })}
 					onKeyDown={e => {
-						(console as any).log(e.key)
 						if (e.key === "Enter" && onEnterPressed) {
 							onEnterPressed()
 						}

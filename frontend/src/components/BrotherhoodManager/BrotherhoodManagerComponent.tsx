@@ -1,15 +1,26 @@
 import * as React from "react"
+import { Brotherhood } from "../../model/Brotherhood"
+import { Credentials } from "../AdminPanel/AdminPanelContainer"
+import { BrotherhoodDetail } from "../BrotherhoodDetail"
 import {
 	BrotherhoodDragDropList,
 	Props as DragDropProps
 } from "./BrotherhoodDragDropList"
+import { Shared } from "./BrotherhoodManagerContainer"
 
-type Props = DragDropProps
+interface Props extends DragDropProps, Shared {
+	credentials: Credentials
+	onBrotherhoodUpdated: (newBrotherhood: Brotherhood) => void
+}
 
 export const BrotherhoodManagerComponent = (
 	{
+		selectedBrotherhood,
 		brotherhoods,
-		onReorder
+		credentials,
+		onSelectBrotherhood,
+		onReorderBrotherhood,
+		onBrotherhoodUpdated
 	}: Props
 ) => <div className="columns">
 	<div className="brotherhood-list column">
@@ -18,13 +29,24 @@ export const BrotherhoodManagerComponent = (
 			?
 				<BrotherhoodDragDropList
 					brotherhoods={brotherhoods}
-					onReorder={onReorder}
+					onReorderBrotherhood={onReorderBrotherhood}
+					onSelectBrotherhood={onSelectBrotherhood}
 				/>
 			:
 				<p>¡Aún no hay hermandades!</p>
 		}
 	</div>
 	<div className="column">
-		Hola
+		{
+			selectedBrotherhood
+			?
+				<BrotherhoodDetail
+					brotherhood={selectedBrotherhood}
+					credentials={credentials}
+					onBrotherhoodUpdated={onBrotherhoodUpdated}
+				/>
+			:
+				<p>¡Hola! Selecciona una hermandad para modificar sus datos.</p>
+		}
 	</div>
 </div>

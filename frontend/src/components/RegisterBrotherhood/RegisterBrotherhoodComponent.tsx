@@ -1,5 +1,5 @@
-import {isBefore} from "date-fns"
 import * as React from "react"
+import { validationRules } from "../../util/validationRules"
 import { ValidableInput } from "../ValidableInput"
 import { Shared } from "./RegisterBrotherhoodContainer"
 
@@ -25,39 +25,14 @@ export const RegisterBrotherhoodComponent = (
 	<ValidableInput
 		name={"Nombre de la hermandad"}
 		value={name}
-		validationRules={value => [
-			[
-				value !== "",
-				"Este campo es obligatorio"
-			],
-			[
-				value.length <= 50,
-				"El nombre no puede tener más de 50 caracteres"
-			],
-			[
-				!value
-					.toLowerCase()
-					.replace("á", "a")
-					.includes("satan"),
-				"No se admiten nombres herejes"
-			]
-		]}
+		validationRules={validationRules.brotherhood.name}
 		onValueChange={value => onDataChanged("name", value)}
 		onValidityChange={isValid => onValidityChanged("name", isValid)}
 	/>
 	<ValidableInput
 		name={"Email del responsable"}
 		value={email}
-		validationRules={value => [
-			[
-				value !== "",
-				"Necesitamos un email para contactar al responsable"
-			],
-			[
-				!!value.match(/.+@.+\..+/),
-				"No es un email válido"
-			]
-		]}
+		validationRules={validationRules.brotherhood.email}
 		onValueChange={v => onDataChanged("email", v)}
 		onValidityChange={isValid => onValidityChanged("email", isValid)}
 	/>
@@ -65,17 +40,7 @@ export const RegisterBrotherhoodComponent = (
 		type="date"
 		name={"Fecha de creación"}
 		value={createdAt}
-		validationRules={value => [
-			[
-				value !== "" && !isNaN(Date.parse(value)),
-				"El formato de la fecha es inválido"
-			],
-			[
-				isBefore(new Date(value), new Date()),
-				"A menos que la hermandad adore al dios Chrono, " +
-				"me da a mi que esa fecha está mal"
-			]
-		]}
+		validationRules={validationRules.brotherhood.date}
 		onValueChange={v => onDataChanged("createdAt", v)}
 		onValidityChange={isValid => onValidityChanged("createdAt", isValid)}
 	/>

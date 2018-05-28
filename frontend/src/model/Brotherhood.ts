@@ -5,7 +5,7 @@ export class Brotherhood {
 			+data.url.match(URL_REGEX)[1],
 			data.name,
 			data.manager_email,
-			new Date(data.createdAt)
+			new Date(data.created_at)
 		)
 	}
 

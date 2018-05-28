@@ -47,6 +47,30 @@ export async function getBrotherhoods(
 	}
 }
 
+export async function updateBrotherhood(
+	credentials: Credentials,
+	brotherhood: Brotherhood,
+	difference: {
+		name?: string
+		manager_email?: string
+		created_at?: Date
+	}
+): Promise<Brotherhood> {
+	const response = await fetch(
+		`${BASE_URL}/brotherhoods/${brotherhood.id}/`,
+		{
+			body: JSON.stringify(difference),
+			headers: {
+				...COMMON_HEADERS,
+				...getAuthHeader(credentials)
+			},
+			method: "PUT"
+		}
+	)
+
+	return Brotherhood.deserialize(await response.json())
+}
+
 /**
  * Changes the order of a brotherhood.
  *
@@ -63,9 +87,9 @@ export async function reorderBrotherhood(
 	await fetch(`${BASE_URL}/brotherhoods/${a.id}/order/`, {
 		body: JSON.stringify((() => {
 			if (b) {
-				 return {
-				 	after_id: b.id
-				 }
+				return {
+					after_id: b.id
+				}
 			} else {
 				return {}
 			}

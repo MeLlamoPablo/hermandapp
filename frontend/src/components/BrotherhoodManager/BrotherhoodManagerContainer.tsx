@@ -11,18 +11,55 @@ interface Props {
 	onBrotherhoodsChanged: (brotherhoods: Array<Brotherhood>) => void
 }
 
-export class BrotherhoodManagerContainer extends React.Component<Props, {}> {
+export interface Shared {
+	selectedBrotherhood: Brotherhood | null
+}
+
+type State = Shared
+
+const DEFAULT_STATE: State = {
+	selectedBrotherhood: null
+}
+
+export class BrotherhoodManagerContainer extends React.Component<Props, State> {
 	constructor(props: Props) {
 		super(props)
 
-		this.handleReorder = this.handleReorder.bind(this)
+		this.state = DEFAULT_STATE
+
+		this.handleSelectBrotherhood = this.handleSelectBrotherhood.bind(this)
+		this.handleReorderBrotherhood = this.handleReorderBrotherhood.bind(this)
+		this.handleBrotherhoodUpdated = this.handleBrotherhoodUpdated.bind(this)
 	}
 
 	public render() {
+		const { session } = this.props
+		const { selectedBrotherhood } = this.state
+
 		return <BrotherhoodManagerComponent
-			brotherhoods={this.props.session.brotherhoods}
-			onReorder={this.handleReorder}
+			selectedBrotherhood={selectedBrotherhood}
+			brotherhoods={session.brotherhoods}
+			credentials={session.credentials}
+			onSelectBrotherhood={this.handleSelectBrotherhood}
+			onReorderBrotherhood={this.handleReorderBrotherhood}
+			onBrotherhoodUpdated={this.handleBrotherhoodUpdated}
 		/>
+	}
+
+	private handleSelectBrotherhood(index: number) {
+		const brotherhoods = this.props.session.brotherhoods
+		const selectedBrotherhood = brotherhoods[index]
+
+		this.setState({ selectedBrotherhood })
+	}
+
+	private handleBrotherhoodUpdated(newBrotherhood: Brotherhood) {
+		const brotherhoods = [...this.props.session.brotherhoods]
+		const index = brotherhoods
+			.findIndex(it => it.id === newBrotherhood.id)
+
+		brotherhoods[index] = newBrotherhood
+		this.props.onBrotherhoodsChanged(brotherhoods)
 	}
 
 	/**
@@ -31,7 +68,7 @@ export class BrotherhoodManagerContainer extends React.Component<Props, {}> {
 	 * in memory. Then, sends an API request to persist the changes in the
 	 * backend.
 	 */
-	private async handleReorder(result: DropResult) {
+	private async handleReorderBrotherhood(result: DropResult) {
 		const {
 			session: {
 				brotherhoods,

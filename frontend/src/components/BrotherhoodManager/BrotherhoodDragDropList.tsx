@@ -10,15 +10,20 @@ import { BrotherhoodListElement } from "./BrotherhoodListElement"
 
 export interface Props {
 	brotherhoods: Array<Brotherhood>
-	onReorder: (result: DropResult, provided: HookProvided) => void
+	onSelectBrotherhood: (index: number) => void
+	onReorderBrotherhood: (result: DropResult, provided: HookProvided) => void
 }
 
 export const BrotherhoodDragDropList = (
 	{
 		brotherhoods,
-		onReorder
+		onSelectBrotherhood,
+		onReorderBrotherhood
 	}: Props
-) => <DragDropContext onDragEnd={onReorder}>
+) => <DragDropContext
+	onDragEnd={onReorderBrotherhood}
+	onDragStart={i => onSelectBrotherhood(i.source.index)}
+>
 	<Droppable droppableId="droppable">
 		{provided =>
 			<div
@@ -29,11 +34,12 @@ export const BrotherhoodDragDropList = (
 					brotherhoods.map((brotherhood, i) =>
 						<Draggable
 							key={i}
-							draggableId={i+""}
+							draggableId={i + ""}
 							index={i}
 						>
 							{draggableProvided =>
 								<div
+									onClick={() => onSelectBrotherhood(i)}
 									ref={draggableProvided.innerRef}
 									{...(
 										draggableProvided.draggableProps as any
