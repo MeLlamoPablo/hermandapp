@@ -13,10 +13,16 @@ export const BrotherhoodManagerComponent = (
 	}: Props
 ) => <div className="columns">
 	<div className="brotherhood-list column">
-		<BrotherhoodDragDropList
-			brotherhoods={brotherhoods}
-			onReorder={onReorder}
-		/>
+		{
+			brotherhoods.length > 0
+			?
+				<BrotherhoodDragDropList
+					brotherhoods={brotherhoods}
+					onReorder={onReorder}
+				/>
+			:
+				<p>¡Aún no hay hermandades!</p>
+		}
 	</div>
 	<div className="column">
 		Hola

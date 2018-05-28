@@ -1,14 +1,13 @@
 import * as React from "react"
+import { Link } from "react-router-dom"
 
 export const HeaderComponent = () => <nav
 	className="navbar"
 	role="navigation"
 	aria-label="main navigation">
 	<div className="navbar-brand">
-		<a className="navbar-item" href="#">
-			<img src="https://bulma.io/images/bulma-logo.png"
-			     alt="Bulma: a modern CSS framework based on Flexbox" width="112"
-			     height="28"/>
-		</a>
+		<Link className="navbar-item" to="/">
+			<h2 className="title is-2">Hermandapp</h2>
+		</Link>
 	</div>
 </nav>

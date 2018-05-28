@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                     editable=False,
                     db_index=True
                 )),
-                ('created', models.DateTimeField(auto_now_add=True)),
+                ('created_at', models.DateTimeField()),
             ],
         ),
     ]

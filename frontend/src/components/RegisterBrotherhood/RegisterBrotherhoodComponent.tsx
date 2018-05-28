@@ -1,3 +1,4 @@
+import {isBefore} from "date-fns"
 import * as React from "react"
 import { ValidableInput } from "../ValidableInput"
 import { Shared } from "./RegisterBrotherhoodContainer"
@@ -13,6 +14,7 @@ export const RegisterBrotherhoodComponent = (
 	{
 		name,
 		email,
+		createdAt,
 		isDataValid,
 		onDataChanged,
 		onValidityChanged,
@@ -58,6 +60,24 @@ export const RegisterBrotherhoodComponent = (
 		]}
 		onValueChange={v => onDataChanged("email", v)}
 		onValidityChange={isValid => onValidityChanged("email", isValid)}
+	/>
+	<ValidableInput
+		type="date"
+		name={"Fecha de creación"}
+		value={createdAt}
+		validationRules={value => [
+			[
+				value !== "" && !isNaN(Date.parse(value)),
+				"El formato de la fecha es inválido"
+			],
+			[
+				isBefore(new Date(value), new Date()),
+				"A menos que la hermandad adore al dios Chrono, " +
+				"me da a mi que esa fecha está mal"
+			]
+		]}
+		onValueChange={v => onDataChanged("createdAt", v)}
+		onValidityChange={isValid => onValidityChanged("createdAt", isValid)}
 	/>
 
 	<div className="field is-grouped">

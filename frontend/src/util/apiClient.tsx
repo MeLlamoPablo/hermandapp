@@ -4,9 +4,17 @@ import { Brotherhood } from "../model/Brotherhood"
 
 const BASE_URL = "http://localhost:4000"
 
-export async function createBrotherhood(name: string, email: string) {
+export async function createBrotherhood(
+	name: string,
+	email: string,
+	createdAt: Date
+) {
 	await fetch(`${BASE_URL}/brotherhoods/`, {
-		body: JSON.stringify({ name, manager_email: email }),
+		body: JSON.stringify({
+			created_at: createdAt,
+			manager_email: email,
+			name
+		}),
 		headers: COMMON_HEADERS,
 		method: "POST"
 	})

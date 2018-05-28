@@ -5,19 +5,19 @@ export class Brotherhood {
 			+data.url.match(URL_REGEX)[1],
 			data.name,
 			data.manager_email,
-			new Date(data.created)
+			new Date(data.createdAt)
 		)
 	}
 
 	public readonly id: number
 	public readonly name: string
 	public readonly managerEmail: string
-	public readonly created: Date
+	public readonly createdAt: Date
 
 	constructor(id: number, name: string, managerEmail: string, created: Date) {
 		this.id = id
 		this.name = name
 		this.managerEmail = managerEmail
-		this.created = created
+		this.createdAt = created
 	}
 }

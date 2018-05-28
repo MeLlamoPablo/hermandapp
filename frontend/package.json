@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"bulma": "^0.7.1",
+		"date-fns": "^1.29.0",
 		"js-base64": "^2.4.5",
 		"nprogress": "^0.2.0",
 		"react": "^16.4.0",

@@ -9,6 +9,7 @@ import { RegisterBrotherhoodComponent } from "./RegisterBrotherhoodComponent"
 export interface Shared {
 	email: string
 	name: string
+	createdAt: string
 }
 
 interface State extends Shared {
@@ -19,15 +20,18 @@ interface State extends Shared {
 export interface Validity {
 	email: boolean
 	name: boolean
+	createdAt: boolean
 }
 
 const DEFAULT_STATE: State = {
 	brotherhoodRegistered: false,
+	createdAt: "",
 	email: "",
 	name: "",
 	validity: {
+		createdAt: false,
 		email: false,
-		name: false
+		name: false,
 	},
 }
 
@@ -45,7 +49,7 @@ export class RegisterBrotherhoodContainer extends React.Component<{}, State> {
 	}
 
 	public render() {
-		const { brotherhoodRegistered, name, email } = this.state
+		const { brotherhoodRegistered, name, email, createdAt } = this.state
 
 		if (brotherhoodRegistered) {
 			return <BrotherhoodRegistered
@@ -55,6 +59,7 @@ export class RegisterBrotherhoodContainer extends React.Component<{}, State> {
 			return <RegisterBrotherhoodComponent
 				name={name}
 				email={email}
+				createdAt={createdAt}
 				isDataValid={this.isDataValid()}
 				onDataChanged={this.handleDataChanged}
 				onValidityChanged={this.handleValidityChanged}
@@ -65,7 +70,7 @@ export class RegisterBrotherhoodContainer extends React.Component<{}, State> {
 
 	private isDataValid() {
 		const { validity } = this.state
-		return validity.email && validity.name
+		return validity.email && validity.name && validity.createdAt
 	}
 
 	private handleDataChanged(key: string, newValue: string) {
@@ -85,10 +90,10 @@ export class RegisterBrotherhoodContainer extends React.Component<{}, State> {
 	}
 
 	private async handleBrotherhoodCreated() {
-		const { name, email } = this.state
+		const { name, email, createdAt } = this.state
 
 		NProgress.start()
-		await createBrotherhood(name, email)
+		await createBrotherhood(name, email, new Date(createdAt))
 		NProgress.done()
 
 		this.setState({
