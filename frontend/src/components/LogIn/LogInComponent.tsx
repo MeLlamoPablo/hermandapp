@@ -47,6 +47,11 @@ export const LogInComponent = (
 		]}
 		onValueChange={v => onDataChanged("password", v)}
 		onValidityChange={isValid => onValidityChanged("password", isValid)}
+		onEnterPressed={() => {
+			if (isDataValid) {
+				onSendButtonClicked()
+			}
+		}}
 	/>
 
 	{ showIncorrectCredentialsDialog &&

@@ -39,6 +39,37 @@ export async function getBrotherhoods(
 	}
 }
 
+/**
+ * Changes the order of a brotherhood.
+ *
+ * @param credentials  The admin credentials
+ * @param a The brotherhood whose order we're modifying
+ * @param b The brotherhood below where the brotherhood a will be placed, or
+ * null if a should be placed at the top.
+ */
+export async function reorderBrotherhood(
+	credentials: Credentials,
+	a: Brotherhood,
+	b: Brotherhood | null
+) {
+	await fetch(`${BASE_URL}/brotherhoods/${a.id}/order/`, {
+		body: JSON.stringify((() => {
+			if (b) {
+				 return {
+				 	after_id: b.id
+				 }
+			} else {
+				return {}
+			}
+		})()),
+		headers: {
+			...COMMON_HEADERS,
+			...getAuthHeader(credentials)
+		},
+		method: "PUT"
+	})
+}
+
 const COMMON_HEADERS = {
 	"Accept": "application/json",
 	"Content-Type": "application/json"

@@ -13,6 +13,7 @@ interface Props {
 	validationRules?: ValidationRules
 	onValueChange: (value: string) => void
 	onValidityChange: (isValid: boolean) => void
+	onEnterPressed?: () => void
 }
 
 interface State {
@@ -50,7 +51,8 @@ export class ValidableInput extends React.Component<Props, State> {
 			type,
 			value,
 			onValueChange,
-			onValidityChange
+			onValidityChange,
+			onEnterPressed
 		} = this.props
 		const { blurred } = this.state
 		const errors = this.getErrors()
@@ -78,6 +80,12 @@ export class ValidableInput extends React.Component<Props, State> {
 					value={value}
 					onChange={e => onValueChange(e.target.value)}
 					onBlur={() => this.setState({ blurred: true })}
+					onKeyDown={e => {
+						(console as any).log(e.key)
+						if (e.key === "Enter" && onEnterPressed) {
+							onEnterPressed()
+						}
+					}}
 				/>
 			</div>
 			{alertUser &&

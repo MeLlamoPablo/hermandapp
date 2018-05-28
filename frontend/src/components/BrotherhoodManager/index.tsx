@@ -1,3 +1,3 @@
 export {
-	BrotherhoodManagerComponent as BrotherhoodManager
-} from "./BrotherhoodManagerComponent"
+	BrotherhoodManagerContainer as BrotherhoodManager
+} from "./BrotherhoodManagerContainer"

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 import { Link } from "react-router-dom"
 import { RegisterBrotherhood } from "../components/RegisterBrotherhood"
 import { Welcome } from "../components/Welcome"

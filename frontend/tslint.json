@@ -25,6 +25,7 @@
 			true,
 			"double",
 			"avoid-escape"
-		]
+		],
+		"semicolon": [true, "never"]
 	}
 }
